@@ -40,8 +40,6 @@
 #define ALTSHIFTMODE 149
 #define CTRLSHIFTMODE 150
 
-#define KEY_DHT11MODE 151
-
 #include <keylayouts.h>
 
 /**********************************************************
@@ -113,7 +111,7 @@ const int keymap_default[128] = {
   KEY__,                        // -CN -MR-  0x36
   KEY__,                        // -CN -MRP  0x37
 
-  KEY_DHT11MODE,                        // -CN I---  0x38
+  KEY__,                        // -CN I---  0x38
   KEY__,                        // -CN I--P  0x39
   KEY__,                        // -CN I-R-  0x3A
   KEY__,                        // -CN I-RP  0x3B
@@ -358,7 +356,7 @@ const int keymap_function[128] = {
   KEY__,                        // --- -MRP  0x07
 
   KEY_F2,                       // --- I---  0x08
-  KEY_DHT11MODE,                        // --- I--P  0x09
+  KEY__,                        // --- I--P  0x09
   KEY__,                        // --- I-R-  0x0A
   KEY__,                        // --- I-RP  0x0B
   KEY__,                        // --- IM--  0x0C
