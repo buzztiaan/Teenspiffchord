@@ -1,5 +1,4 @@
-#include <Versalino.h>
-#include <dht11.h>
+//#include <Versalino.h>
 
 // teenspiffchord v1 
 // - reinvented spiffchorder
@@ -10,14 +9,22 @@
 
 #define DEBOUNCE_TIMEOUT 10
 #define TYPETIME 500          // 500 for noooooobs
+#define BUTTON_F 4
+#define BUTTON_C 3
+#define BUTTON_N 2
+#define BUTTON_I 14
+#define BUTTON_M 15
+#define BUTTON_R 16
+#define BUTTON_P 17
+#define LEDPIN 13
 
-Bounce button0 = Bounce(0, DEBOUNCE_TIMEOUT);
-Bounce button1 = Bounce(1, DEBOUNCE_TIMEOUT);
-Bounce button2 = Bounce(2, DEBOUNCE_TIMEOUT);
-Bounce button3 = Bounce(3, DEBOUNCE_TIMEOUT);
-Bounce button4 = Bounce(19, DEBOUNCE_TIMEOUT);
-Bounce button5 = Bounce(20, DEBOUNCE_TIMEOUT);
-Bounce button6 = Bounce(21, DEBOUNCE_TIMEOUT);
+Bounce button0 = Bounce(BUTTON_P, DEBOUNCE_TIMEOUT);
+Bounce button1 = Bounce(BUTTON_R, DEBOUNCE_TIMEOUT);
+Bounce button2 = Bounce(BUTTON_M, DEBOUNCE_TIMEOUT);
+Bounce button3 = Bounce(BUTTON_I, DEBOUNCE_TIMEOUT);
+Bounce button4 = Bounce(BUTTON_N, DEBOUNCE_TIMEOUT);
+Bounce button5 = Bounce(BUTTON_C, DEBOUNCE_TIMEOUT);
+Bounce button6 = Bounce(BUTTON_F, DEBOUNCE_TIMEOUT);
 
 unsigned long presstime;
 boolean pressed;
@@ -30,10 +37,6 @@ int dhtinit;
 float dhthumidity;
 float dhttemperature;
 int currentmodifier;
-
-dht11 DHT11;
-
-const int ledPin = 11;  
 
 #define FUNCTION_MODE 1
 #define NUMBER_MODE 2
@@ -102,24 +105,6 @@ void processchord(int value) {
 // #define MACRO_000 145
 // #define MACRO_parens 146
 
-  } else if (pressedkey == KEY_DHT11MODE) {
-    //MOEHAAAAA
-    // DHT11 readout ;)
-    
-    dhtinit = DHT11.read();
-        
-    switch (dhtinit) {
-      case 0: break;
-      case -1: Keyboard.println("Checksum error"); break;
-      case -2: Keyboard.println("Time out error"); break;
-      default: Keyboard.println("Unknown error"); break;
-    }
-
-    Keyboard.print("Humi: ");
-    Keyboard.println((float)DHT11.humidity, DEC);
-    Keyboard.print("Temp: ");
-    Keyboard.println((float)DHT11.temperature, DEC);
-  
   } else {
     // normal chord, just print the output :D
 
@@ -153,16 +138,15 @@ void releasekeys() {
 
 void setup() {
   pinMode(0, INPUT_PULLUP);
-  pinMode(1, INPUT_PULLUP);
-  pinMode(2, INPUT_PULLUP);
-  pinMode(3, INPUT_PULLUP);
-  pinMode(19, INPUT_PULLUP);
-  pinMode(20, INPUT_PULLUP);
-  pinMode(21, INPUT_PULLUP);
+  pinMode(BUTTON_F, INPUT_PULLUP);
+  pinMode(BUTTON_C, INPUT_PULLUP);
+  pinMode(BUTTON_N, INPUT_PULLUP);
+  pinMode(BUTTON_I, INPUT_PULLUP);
+  pinMode(BUTTON_M, INPUT_PULLUP);
+  pinMode(BUTTON_R, INPUT_PULLUP);
+  pinMode(BUTTON_P, INPUT_PULLUP);
+  pinMode(LEDPIN, OUTPUT);
   
-  pinMode(ledPin, OUTPUT);
-  
-  DHT11.attach(9);
 }
 
 void loop() {
@@ -180,7 +164,7 @@ void loop() {
     }
     chordvalue = 0; 
     buttonsheld = 0; 
-    digitalWrite(ledPin, LOW);
+    digitalWrite(LEDPIN, LOW);
   }
 
   if (button0.fallingEdge()) {
@@ -267,7 +251,7 @@ void loop() {
   }
 
   if (pressed) {
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(LEDPIN, HIGH);
   }
 
   if (chordvalue) {
