@@ -2,7 +2,7 @@
 
 This is code (and a 3D design for printing) for a chorded keyboard.
 
-Inspiration was pulled from http://chorder.cs.vassar.edu/spiffchorder%3Aforside .
+Inspiration was pulled from http://chorder.cs.vassar.edu/ , Most specifically the 'spiffchorder' version that was posted on it.
 I also grabbed his .h for the keyboard layouts.
 
 This uses internal pullups for the buttons, and a teensyduino library for debouncing buttons.
