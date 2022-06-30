@@ -1,6 +1,6 @@
-![image](https://user-images.githubusercontent.com/940336/176450360-afa8795d-6f66-48e4-bd58-e2abdc3f1aa1.png)
+This is code (and a 3D design for printing) for a chorded USB textkeyboard.
 
-This is code (and a 3D design for printing) for a chorded keyboard.
+![image](https://user-images.githubusercontent.com/940336/176568905-2ea7ce9f-a529-4cd2-8605-407c2d7d8ff6.png)
 
 Inspiration was pulled from http://chorder.cs.vassar.edu/ , Most specifically the 'spiffchorder' version that was posted on it.
 I also grabbed his .h for the keyboard layouts.
